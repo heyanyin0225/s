@@ -91,8 +91,11 @@
         <div class="digit">:</div>
         <div class="digit"><div class="number" id="second">00</div></div>
     </div>
-    <div class="big-option" onclick="playAudio()">生日祝福</div>
-    <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为您的音频文件 -->
+    <div class="big-option" onclick="playBirthdayAudio()">生日祝福</div>
+    
+    <audio id="auto-audio" src="Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3" preload="auto"></audio> <!-- 替换为自动播放的音频文件 -->
+    <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为点击播放的音频文件 -->
+    
     <footer>
         <p>&copy; 2024 商曦月生日快乐！</p>
     </footer>
@@ -131,8 +134,8 @@
             document.getElementById('date').innerText = `现在是${year}年${month}月${day}日`;
         }
 
-        function playAudio() {
-            const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3');
+        function playBirthdayAudio() {
+            const audio = document.getElementById('birthday-audio');
             audio.currentTime = 0; // 从头开始播放
             audio.play().catch(function(error) {
                 console.log("播放失败:", error);
@@ -141,8 +144,8 @@
 
         // 自动播放音乐
         window.addEventListener('load', function() {
-            const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3');
-            audio.play().catch(function(error) {
+            const autoAudio = document.getElementById('auto-audio');
+            autoAudio.play().catch(function(error) {
                 console.log("自动播放被阻止:", error);
             });
         });
