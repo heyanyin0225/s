@@ -133,7 +133,7 @@
     <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为点击播放的音频文件 -->
     
     <div class="overlay" id="overlay">
-        <h2>成人之礼</h2>
+        <h2>致商曦月</h2>
         <p>祝你生日快乐，愿你在新的一岁里，心想事成，幸福美满！</p>
     </div>
 
@@ -212,6 +212,11 @@
             document.getElementById('clock').style.transform = 'translateX(-100px)';
             document.querySelector('.big-option').style.transform = 'translateX(-100px)';
             
+            // 更改中间内容为“成人之礼”
+            document.getElementById('main-title').innerText = "成人之礼";
+            document.getElementById('date').innerText = "";
+            document.getElementById('clock').style.display = 'none'; // 隐藏时钟
+            
             // 显示文本框
             document.getElementById('overlay').classList.add('active');
             playBirthdayAudio(); // 播放生日音频
@@ -220,9 +225,10 @@
         function hideOverlay() {
             // 所有中间内容复原
             document.getElementById('header').style.transform = 'translateX(0)';
-            document.getElementById('date').style.transform = 'translateX(0)';
-            document.getElementById('clock').style.transform = 'translateX(0)';
+            document.getElementById('date').innerText = "现在是"; // 恢复日期
+            document.getElementById('clock').style.display = 'flex'; // 恢复时钟
             document.querySelector('.big-option').style.transform = 'translateX(0)';
+            document.getElementById('main-title').innerText = "这是属于你的网站"; // 恢复标题
             
             // 隐藏文本框
             document.getElementById('overlay').classList.remove('active');
