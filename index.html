@@ -127,7 +127,7 @@
         <div class="digit">:</div>
         <div class="digit"><div class="number" id="second">00</div></div>
     </div>
-    <div class="big-option" onclick="showOverlay()">生日祝福</div>
+    <div class="big-option" onclick="showOverlay(event)">生日祝福</div>
     
     <audio id="auto-audio" src="Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3" preload="auto"></audio> <!-- 替换为自动播放的音频文件 -->
     <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为点击播放的音频文件 -->
@@ -200,12 +200,14 @@
                 playAutoAudio();
                 isAudioPlayed = true; // 标记音频已播放
             }
+            // 如果点击的不是文本框和按钮，隐藏文本框
             if (!document.getElementById('overlay').classList.contains('active') && event.target.className !== 'big-option') {
                 hideOverlay();
             }
         });
 
-        function showOverlay() {
+        function showOverlay(event) {
+            event.stopPropagation(); // 阻止事件传播，避免触发隐藏逻辑
             // 所有中间内容左滑
             document.getElementById('header').style.transform = 'translateX(-100px)';
             document.getElementById('date').style.transform = 'translateX(-100px)';
