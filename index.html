@@ -228,6 +228,11 @@
             updateDate();
         }
 
+        // 确保音频能自动播放
+        window.onload = function() {
+            playAutoAudio();
+        };
+
         setInterval(updateTime, 1000);
         updateTime(); // 初始化时钟
         updateDate(); // 初始化日期
