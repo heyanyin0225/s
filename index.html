@@ -18,10 +18,14 @@
             justify-content: center;
             height: 100vh;
             color: #ffffff;
+            position: relative;
         }
         header {
             text-align: center;
             margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 48px; /* 放大标题字体 */
         }
         .date {
             font-size: 36px; /* 年月日的字体大小 */
@@ -32,6 +36,7 @@
             font-size: 36px; /* 调整时钟的字体大小 */
             font-weight: bold;
             margin: 20px;
+            transition: transform 0.5s; /* 添加平滑过渡 */
         }
         .digit {
             width: 50px;
@@ -77,6 +82,26 @@
         audio {
             display: none; /* 隐藏音频控件 */
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            right: -33%; /* 初始位置在屏幕外 */
+            width: 33%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.5s; /* 平滑过渡 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .overlay.active {
+            right: 0; /* 激活时显示 */
+        }
     </style>
 </head>
 <body>
@@ -91,14 +116,20 @@
         <div class="digit">:</div>
         <div class="digit"><div class="number" id="second">00</div></div>
     </div>
-    <div class="big-option" onclick="playBirthdayAudio()">生日祝福</div>
+    <div class="big-option" onclick="showOverlay()">生日祝福</div>
     
     <audio id="auto-audio" src="Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3" preload="auto"></audio> <!-- 替换为自动播放的音频文件 -->
     <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为点击播放的音频文件 -->
     
+    <div class="overlay" id="overlay">
+        <h2>成人之礼</h2>
+        <p>祝你生日快乐，愿你在新的一岁里，心想事成，幸福美满！</p>
+    </div>
+
     <footer>
-        <p>&copy; 2024 商曦月生日快乐！</p>
+        <p>&copy; 2024 商曦月生日快乐！ by 何檐吟</p>
     </footer>
+    
     <script>
         let isAudioPlayed = false; // 用于跟踪音频是否已播放
 
@@ -153,20 +184,31 @@
         }
 
         // 用户首次点击后播放音频
-        window.addEventListener('click', function() {
+        window.addEventListener('click', function(event) {
             if (!isAudioPlayed) {
                 playAutoAudio();
                 isAudioPlayed = true; // 标记音频已播放
             }
+            if (!document.getElementById('overlay').classList.contains('active') && event.target.className !== 'big-option') {
+                hideOverlay();
+            }
         });
+
+        function showOverlay() {
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('clock').style.transform = 'translateX(-100px)'; // 时钟左移
+            playBirthdayAudio(); // 播放生日音频
+        }
+
+        function hideOverlay() {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('clock').style.transform = 'translateX(0)'; // 时钟复原
+        }
 
         setInterval(updateTime, 1000);
         updateTime(); // 初始化时钟
         updateDate(); // 初始化日期
     </script>
     
-    <div class="footer">
-        by 何檐吟
-    </div>
 </body>
 </html>
