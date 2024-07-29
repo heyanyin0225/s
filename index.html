@@ -29,7 +29,7 @@
         }
         .clock {
             display: flex;
-            font-size: 24px; /* 时钟的字体大小 */
+            font-size: 36px; /* 调整时钟的字体大小 */
             font-weight: bold;
             margin: 20px;
         }
@@ -92,7 +92,7 @@
         <div class="digit"><div class="number" id="second">00</div></div>
     </div>
     <div class="big-option" onclick="playAudio()">生日祝福</div>
-    <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac"></audio> <!-- 替换为您的音频文件 -->
+    <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为您的音频文件 -->
     <footer>
         <p>&copy; 2024 商曦月生日快乐！</p>
     </footer>
@@ -134,7 +134,9 @@
         function playAudio() {
             const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3');
             audio.currentTime = 0; // 从头开始播放
-            audio.play();
+            audio.play().catch(function(error) {
+                console.log("播放失败:", error);
+            });
         }
 
         // 自动播放音乐
