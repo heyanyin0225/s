@@ -90,7 +90,7 @@
             position: fixed;
             top: 0;
             right: -100%; /* 初始位置在屏幕外 */
-            width: 100%; /* 确保覆盖整个屏幕 */
+            width: 33%; /* 确保覆盖整个屏幕 */
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             color: white;
@@ -217,6 +217,7 @@
             // 所有中间内容复原
             document.getElementById('header').style.transform = 'translateX(0)';
             document.getElementById('date').style.transform = 'translateX(0)'; // 恢复日期位置
+            document.getElementById('clock').style.display = 'flex';
             document.getElementById('clock').style.transform = 'translateX(0)'; // 恢复时钟位置
             document.querySelector('.big-option').style.transform = 'translateX(0)';
             document.getElementById('main-title').innerText = "这是属于你的网站"; // 恢复标题
