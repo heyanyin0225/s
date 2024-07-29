@@ -204,7 +204,7 @@
             
             // 更改中间内容为“成人之礼”
             document.getElementById('main-title').innerText = "成人之礼";
-            document.getElementById('date').innerText = "";
+            document.getElementById('date').innerText = ""; // 隐藏日期
             document.getElementById('clock').style.display = 'none'; // 隐藏时钟
             
             // 显示文本框
@@ -216,13 +216,16 @@
             event.stopPropagation(); // 阻止事件传播
             // 所有中间内容复原
             document.getElementById('header').style.transform = 'translateX(0)';
-            document.getElementById('date').innerText = "现在是"; // 恢复日期
+            document.getElementById('date').innerText = ""; // 恢复日期
             document.getElementById('clock').style.display = 'flex'; // 恢复时钟
             document.querySelector('.big-option').style.transform = 'translateX(0)';
             document.getElementById('main-title').innerText = "这是属于你的网站"; // 恢复标题
             
             // 隐藏文本框
             document.getElementById('overlay').classList.remove('active');
+
+            // 更新日期
+            updateDate();
         }
 
         setInterval(updateTime, 1000);
