@@ -100,6 +100,8 @@
         <p>&copy; 2024 商曦月生日快乐！</p>
     </footer>
     <script>
+        let isAudioPlayed = false; // 用于跟踪音频是否已播放
+
         function flipNumber(element, newValue) {
             const oldValue = element.innerText;
             if (oldValue !== newValue) {
@@ -142,12 +144,20 @@
             });
         }
 
-        // 自动播放音乐
-        window.addEventListener('load', function() {
+        function playAutoAudio() {
             const autoAudio = document.getElementById('auto-audio');
+            autoAudio.currentTime = 0; // 从头开始播放
             autoAudio.play().catch(function(error) {
                 console.log("自动播放被阻止:", error);
             });
+        }
+
+        // 用户首次点击后播放音频
+        window.addEventListener('click', function() {
+            if (!isAudioPlayed) {
+                playAutoAudio();
+                isAudioPlayed = true; // 标记音频已播放
+            }
         });
 
         setInterval(updateTime, 1000);
