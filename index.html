@@ -132,14 +132,14 @@
         }
 
         function playAudio() {
-            const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House');
+            const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3');
             audio.currentTime = 0; // 从头开始播放
             audio.play();
         }
 
         // 自动播放音乐
         window.addEventListener('load', function() {
-            const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House');
+            const audio = document.getElementById('Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3');
             audio.play().catch(function(error) {
                 console.log("自动播放被阻止:", error);
             });
