@@ -132,7 +132,7 @@
     <audio id="auto-audio" src="Rosa Walton,Hallie Coggins - I Really Want to Stay At Your House.mp3" preload="auto"></audio> <!-- 替换为自动播放的音频文件 -->
     <audio id="birthday-audio" src="卦者灵风 - 范进中举.flac" preload="auto"></audio> <!-- 替换为点击播放的音频文件 -->
     
-    <div class="overlay" id="overlay">
+    <div class="overlay" id="overlay" onclick="hideOverlay()">
         <h2>致商曦月</h2>
         <p>祝你生日快乐，愿你在新的一岁里，心想事成，幸福美满！</p>
     </div>
@@ -199,10 +199,6 @@
             if (!isAudioPlayed) {
                 playAutoAudio();
                 isAudioPlayed = true; // 标记音频已播放
-            }
-            // 如果点击的不是文本框和按钮，隐藏文本框
-            if (!document.getElementById('overlay').classList.contains('active') && event.target.className !== 'big-option') {
-                hideOverlay();
             }
         });
 
