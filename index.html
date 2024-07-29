@@ -19,17 +19,21 @@
             height: 100vh;
             color: #ffffff;
             position: relative;
+            overflow: hidden; /* 防止出现滚动条 */
         }
         header {
             text-align: center;
             margin-bottom: 20px;
+            transition: transform 0.5s; /* 添加平滑过渡 */
         }
         h1 {
             font-size: 48px; /* 放大标题字体 */
+            transition: transform 0.5s; /* 添加平滑过渡 */
         }
         .date {
             font-size: 36px; /* 年月日的字体大小 */
             margin: 20px;
+            transition: transform 0.5s; /* 添加平滑过渡 */
         }
         .clock {
             display: flex;
@@ -102,13 +106,20 @@
         .overlay.active {
             right: 0; /* 激活时显示 */
         }
+        .overlay h2 {
+            font-size: 48px; /* 自定义标题字体大小 */
+            margin-bottom: 20px;
+        }
+        .overlay p {
+            font-size: 24px; /* 自定义内容字体大小 */
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>这是属于你的网站</h1>
+    <header id="header">
+        <h1 id="main-title">这是属于你的网站</h1>
     </header>
-    <div class="date" id="date"></div> <!-- 年月日显示 -->
+    <div class="date" id="date">现在是</div> <!-- 年月日显示 -->
     <div class="clock" id="clock">
         <div class="digit"><div class="number" id="hour">00</div></div>
         <div class="digit">:</div>
@@ -195,14 +206,26 @@
         });
 
         function showOverlay() {
+            // 所有中间内容左滑
+            document.getElementById('header').style.transform = 'translateX(-100px)';
+            document.getElementById('date').style.transform = 'translateX(-100px)';
+            document.getElementById('clock').style.transform = 'translateX(-100px)';
+            document.querySelector('.big-option').style.transform = 'translateX(-100px)';
+            
+            // 显示文本框
             document.getElementById('overlay').classList.add('active');
-            document.getElementById('clock').style.transform = 'translateX(-100px)'; // 时钟左移
             playBirthdayAudio(); // 播放生日音频
         }
 
         function hideOverlay() {
+            // 所有中间内容复原
+            document.getElementById('header').style.transform = 'translateX(0)';
+            document.getElementById('date').style.transform = 'translateX(0)';
+            document.getElementById('clock').style.transform = 'translateX(0)';
+            document.querySelector('.big-option').style.transform = 'translateX(0)';
+            
+            // 隐藏文本框
             document.getElementById('overlay').classList.remove('active');
-            document.getElementById('clock').style.transform = 'translateX(0)'; // 时钟复原
         }
 
         setInterval(updateTime, 1000);
